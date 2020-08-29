@@ -46,7 +46,7 @@ public class PropertiesFileGroupLookupService implements GroupLookupService {
         }
 
         int atChar = email.lastIndexOf('.');
-        String domain = email.substring(atChar + 1);
+        String domain = email.substring(atChar);
 
         String rawGroups = config.getProperty(domain);
         if (rawGroups == null) {
