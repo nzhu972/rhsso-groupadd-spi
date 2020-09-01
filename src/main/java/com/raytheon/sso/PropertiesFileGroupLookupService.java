@@ -28,6 +28,8 @@ public class PropertiesFileGroupLookupService implements GroupLookupService {
         } catch (IOException e) {
             throw new RuntimeException("Failed to read configuration", e);
         }
+
+        LOG.info("Loaded configuration: {}", config);
     }
 
     /**
@@ -46,10 +48,8 @@ public class PropertiesFileGroupLookupService implements GroupLookupService {
         }
 
         int atChar = email.lastIndexOf('.');
-        String domain = email.substring(atChar+1);
-        
-        LOG.info("email domain parsed from user registration {}", domain);
-        
+        String domain = email.substring(atChar + 1);
+
         String rawGroups = config.getProperty(domain);
         if (rawGroups == null) {
             return Collections.emptyList();
